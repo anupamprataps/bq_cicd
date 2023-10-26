@@ -1,4 +1,4 @@
-create table if not exists zalora-dwh.staging.test_table_1
+create table if not exists zalora-dwh.staging.test_table_2
 (
 column_1 STRING,
 column_2 STRING,

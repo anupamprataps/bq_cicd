@@ -13,6 +13,8 @@ jobs:
             gcloud config set project zalora-dwh
       - run:
           name: List All Files
+          paths:
+          - 'ddl/**'
           command: |
             ALL_FILES=$(git ls-tree --full-tree --name-only $CIRCLE_BRANCH main)
             echo "All files:"
