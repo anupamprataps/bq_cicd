@@ -10,7 +10,7 @@ jobs:
           command: |
             echo $key_gcp > key.json
             gcloud auth activate-service-account --key-file=key.json
-            gcloud config set project zalora_dwh
+            gcloud config set project zalora-dwh
       - run:
           name: Check for Changes
           command: |
