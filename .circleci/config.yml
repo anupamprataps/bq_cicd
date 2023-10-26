@@ -15,7 +15,7 @@ jobs:
           name: List All Files
           command: |
             ALL_FILES=$(git ls-tree --full-tree --name-only $CIRCLE_BRANCH main)
-            echo “All files:"
+            echo "All files:"
             echo "$ALL_FILES"
       
       - run:
