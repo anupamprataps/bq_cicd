@@ -8,17 +8,15 @@ jobs:
       - run:
           name: Install gcloud CLI
           command: |
-            echo $GCLOUD_SERVICE_KEY > key.json
+            echo $key_gcp > key.json
             gcloud auth activate-service-account --key-file=key.json
-            gcloud config set project $GCLOUD_PROJECT_ID
+            gcloud config set project zalora_dwh
       - run:
           name: Check for Changes
           command: |
-            CHANGED_FILES=$(git diff --name-only $CIRCLE_BRANCH $REFERENCE_BRANCH)
+            CHANGED_FILES=$(git diff --name-only $CIRCLE_BRANCH main)
             for FILE in $CHANGED_FILES; do
-              if [[ $FILE == "your-ddl-script.sql" ]]; then
-                bq query --use_legacy_sql=false --nouse_legacy_sql --project_id=$GCLOUD_PROJECT_ID < $FILE
-              fi
+              bq query --use_legacy_sql=false --nouse_legacy_sql --project_id=$GCLOUD_PROJECT_ID < $FILE
             done
 workflows:
   version: 2
