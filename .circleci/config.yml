@@ -1,4 +1,10 @@
 version: 2
+on:
+  push:
+    paths:
+    - 'ddl/**'
+    branches:    
+      - main
 jobs:
   build:
     docker:
