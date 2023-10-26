@@ -16,7 +16,7 @@ jobs:
           paths:
           - 'ddl/**'
           command: |
-            ALL_FILES=$(git ls-tree --full-tree --name-only $CIRCLE_BRANCH main)
+            ALL_FILES=$(git ls-tree --full-tree --name-only $CIRCLE_BRANCH)
             echo "All files:"
             echo "$ALL_FILES"
       
@@ -24,7 +24,7 @@ jobs:
           name: Check for Changes
           command: |
             bq query --use_legacy_sql=false --nouse_legacy_sql --project_id=zalora-dwh < table1.sql
-            CHANGED_FILES=$(git diff --name-only $CIRCLE_BRANCH main)
+            CHANGED_FILES=$(git diff --name-only main)
             echo  $CHANGED_FILES
             for FILE in $CHANGED_FILES; do
               SQL=`cat $FILE`
