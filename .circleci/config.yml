@@ -12,6 +12,13 @@ jobs:
             gcloud auth activate-service-account --key-file=key.json
             gcloud config set project zalora-dwh
       - run:
+          name: List All Files
+          command: |
+            ALL_FILES=$(git ls-tree --full-tree --name-only $CIRCLE_BRANCH main)
+            echo “All files:"
+            echo "$ALL_FILES"
+      
+      - run:
           name: Check for Changes
           command: |
             CHANGED_FILES=$(git diff --name-only $CIRCLE_BRANCH main)
