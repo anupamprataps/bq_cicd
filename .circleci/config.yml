@@ -15,6 +15,7 @@ jobs:
           name: Check for Changes
           command: |
             CHANGED_FILES=$(git diff --name-only $CIRCLE_BRANCH main)
+            echo  $CHANGED_FILES
             for FILE in $CHANGED_FILES; do
               SQL=`cat $FILE`
               echo $SQL
