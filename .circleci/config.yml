@@ -16,7 +16,9 @@ jobs:
           command: |
             CHANGED_FILES=$(git diff --name-only $CIRCLE_BRANCH main)
             for FILE in $CHANGED_FILES; do
-              bq query --use_legacy_sql=false --nouse_legacy_sql --project_id=$GCLOUD_PROJECT_ID < $FILE
+              SQL=`cat $FILE`
+              echo $SQL
+              bq query --use_legacy_sql=false --nouse_legacy_sql --project_id=zalora-dwh < $FILE
             done
 workflows:
   version: 2
